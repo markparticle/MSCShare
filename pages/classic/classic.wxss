@@ -1,0 +1,31 @@
+/* pages/classic/classic.wxss */
+
+.chunk{
+    width:150px;
+    height:100px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    background-color: #999999;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.color1{
+    background-color: brown;
+    font-size: 10px;
+}
+
+.color2{
+    background-color: aqua;
+    font-size: 20px;
+}
+
+.color3{
+    background-color: blue;
+    font-size: 30px;
+}
