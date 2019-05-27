@@ -3,8 +3,8 @@
     "pages/classic/classic"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFFF00",
-    "navigationBarTitleText": "Mark",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "Share",
     "navigationBarTextStyle":"black",
     "navigationStyle":"default",
     "backgroundColor":"#ffffff",
