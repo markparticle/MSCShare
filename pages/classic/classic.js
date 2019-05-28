@@ -1,8 +1,10 @@
 // pages/classic/classic.js
 import {ClassicModel} from '../../models/classic.js'
+import {LikeModel} from '../../models/like.js'
 
 
-let classic = new ClassicModel()
+let classicModel = new ClassicModel()
+let likeModel = new LikeModel()
 
 Page({
 
@@ -11,18 +13,22 @@ Page({
    */
   data: {
     classicData: null,
-    test: 1
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    classic.getLatest((res) => {
+    classicModel.getLatest((res) => {
       this.setData({
-        classicData: res
+        classicData: res  
       })
     })
+  },
+
+  onLike: function(event) {
+    let behavior = event.detail.behavior
+    likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type)
   },
 
   //   wx.request({
