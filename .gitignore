@@ -3,6 +3,9 @@
 Thumbs.db
 $RECYCLE.BIN/
 
+/.vscode/
+/typings/
+
 # macOS
 .DS_Store
 .fseventsd
