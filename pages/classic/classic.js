@@ -1,8 +1,8 @@
 // pages/classic/classic.js
-import {HTTP} from '../../util/http.js'
+import {ClassicModel} from '../../models/classic.js'
 
 
-let http = new HTTP()
+let classic = new ClassicModel()
 
 Page({
 
@@ -10,20 +10,21 @@ Page({
    * Page initial data
    */
   data: {
-    test:1
+    classicData: null,
+    test: 1
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    http.request({
-      url: 'classic/latest',
-      success: (res) => {
-        console.log(res)
-      }
+    classic.getLatest((res) => {
+      this.setData({
+        classicData: res
+      })
     })
-    },
+  },
+
   //   wx.request({
   //     url: 'http://bl.7yue.pro/v1/classic/latest',
   //     header: {

@@ -1,5 +1,6 @@
 <!--pages/classic/classic.wxml-->
 <!-- 骨架文件 -->
 <view class="container">
-    <v-like></v-like>
+    <v-like like="{{classicData.like_status}}" count="{{classicData.fav_nums}}"></v-like>
+    <v-movie img="{{classicData.image}}" content="{{classicData.content}}"></v-movie>
 </view>
