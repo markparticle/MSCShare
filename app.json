@@ -2,7 +2,7 @@
     "pages": [
         "pages/classic/classic",
         "components/classic/movie/index",
-        "components/epsoide/index"
+        "components/episode/index"
     ],
     "window": {
         "navigationBarBackgroundColor": "#FFFFFF",
