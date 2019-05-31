@@ -22,17 +22,6 @@ Page({
    */
   onLoad: function (options) {
     classicModel.getLatest((res) => {
-      this.setData({
-        classicData: res
-      })
-    })
-  },
-
-  onLike: function(event) {
-    let behavior = event.detail.behavior
-    likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type)
-  },
-
   //   wx.request({
   //     url: 'http://bl.7yue.pro/v1/classic/latest',
   //     header: {
@@ -43,13 +32,34 @@ Page({
   //     },
   //   })
   // },
-
-  onNext: function(event) {
-
+      this.setData({
+        classicData: res
+      })
+    })
   },
 
+  onLike: function(event) {
+    let behavior = event.detail.behavior
+    likeModel.like(behavior, this.data.classicData.id, this.data.classicData.type)
+  },
+  
   onPrevious: function(event) {
+    this._updateClassic('previous')
+  },
 
+  onNext: function(event) {
+    this._updateClassic('next')
+  },
+
+  _updateClassic: function(nextOrPrevious){
+    let index = this.data.classicData.index
+    classicModel.getClassic(index, nextOrPrevious, (res) => {
+      this.setData({
+          classicData: res,
+          latest: classicModel.isLatest(res.index),
+          first: classicModel.isFirst(res.index)
+      })
+    })
   },
 
   /**

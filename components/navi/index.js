@@ -15,7 +15,7 @@ Component({
     data: {
         disLeftSrc: 'images/triangle.dis@left.png',
         leftSrc: 'images/triangle@left.png',
-        disRightftSrc: 'images/triangle.dis@right.png',
+        disRightSrc: 'images/triangle.dis@right.png',
         rightSrc: 'images/triangle@right.png',
     },
 
@@ -29,7 +29,7 @@ Component({
             }
         },
         onRight: function(event){
-            if (!this.properties){
+            if (!this.properties.first){
                 this.triggerEvent('right', {}, {})
             }            
         },        
