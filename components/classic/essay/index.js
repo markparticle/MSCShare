@@ -1,4 +1,4 @@
-// components/classic/movie/index.js
+// components/classic/essay/index.js
 import {classicBeh} from "../classic-beh.js"
 
 
@@ -12,7 +12,7 @@ Component({
     },
 
     /**
-     * 页面的初始数据
+     * 组件的初始数据
      */
     data: {
 
@@ -22,6 +22,6 @@ Component({
      * 组件的方法列表
      */
     methods: {
-        
+
     }
 })
