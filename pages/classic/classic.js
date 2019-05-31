@@ -13,6 +13,8 @@ Page({
    */
   data: {
     classicData: null,
+    latest: true,
+    first: false
   },
 
   /**
@@ -41,6 +43,14 @@ Page({
   //     },
   //   })
   // },
+
+  onNext: function(event) {
+
+  },
+
+  onPrevious: function(event) {
+
+  },
 
   /**
    * Lifecycle function--Called when page is initially rendered
