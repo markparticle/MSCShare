@@ -3,8 +3,8 @@
 Thumbs.db
 $RECYCLE.BIN/
 
-/.vscode/
-/typings/
+/.vscode
+/typings
 
 # macOS
 .DS_Store
