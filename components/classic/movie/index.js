@@ -8,9 +8,7 @@ Component({
      */
     behaviors: [classicBeh],
     properties: {
-
     },
-
     /**
      * 页面的初始数据
      */
