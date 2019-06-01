@@ -2,7 +2,7 @@
 <!-- 骨架文件 -->
 <view class="container">
     <view class="header">
-        <v-epsoide class="epsoide" index="{{classicData.index}}" content="{{classicData.content}}" />
+        <v-episode class="episode" index="{{classicData.index}}" content="{{classicData.content}}" />
         <v-like class="like" bind:like="onLike" like="{{classicData.like_status}}" count="{{classicData.fav_nums}}" />
     </view>
     <v-movie img="{{classicData.image}}" content="{{classicData.content}}"></v-movie>
