@@ -12,5 +12,6 @@
         "backgroundColor": "#ffffff",
         "enablePullDownRefresh": true
     },
+    "requiredBackgroundModes": ["audio"],
     "sitemapLocation": "sitemap.json"
 }
