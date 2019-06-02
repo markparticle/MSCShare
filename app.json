@@ -1,6 +1,8 @@
 {
     "pages": [
         "pages/classic/classic",
+        "pages/book/book",
+        "pages/my/my",
         "components/classic/movie/index",
         "components/episode/index"
     ],
@@ -12,6 +14,30 @@
         "backgroundColor": "#ffffff",
         "enablePullDownRefresh": true
     },
-    "requiredBackgroundModes": ["audio"],
-    "sitemapLocation": "sitemap.json"
+    "requiredBackgroundModes": [
+        "audio"
+    ],
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "list": [
+            {
+                "text": "流行",
+                "pagePath": "pages/classic/classic",
+                "iconPath": "/images/tab/classic.png",
+                "selectedIconPath": "/images/tab/classic@highlight.png"
+            },
+            {
+                "text": "书籍",
+                "pagePath": "pages/book/book",
+                "iconPath": "/images/tab/book.png",
+                "selectedIconPath": "/images/tab/book@highlight.png"
+            },
+            {
+                "text": "喜欢",
+                "pagePath": "pages/my/my",
+                "iconPath": "/images/tab/my.png",
+                "selectedIconPath": "/images/tab/my@highlight.png"
+            }
+        ]
+    }
 }
