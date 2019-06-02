@@ -35,6 +35,7 @@ Component({
                 })
                 mMgr.src = this.properties.musicSrc
                 mMgr.title = this.properties.musicTitle
+                mMgr.coverImgUrl = this.properties.img
             } else {
                 this.setData({
                     playing: false,
