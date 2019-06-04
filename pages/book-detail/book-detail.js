@@ -1,4 +1,4 @@
-// pages/book/book.js
+// pages/book-detail/book-detail.js
 import {
     BookModel
 } from '../../models/book.js'
@@ -12,37 +12,38 @@ Page({
      * 页面的初始数据
      */
     data: {
-        books:[]
+        comments: [],
+        book: null,
+        likeStatus: false,
+        likeCount: 0,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    // onLoad: function (options) {
-    //     // pending fulfilled rejected 状态修改后就固定不可修改
-    //     const promise = new Promise((resolve, reject) => {
-    //         wx.getSystemInfo({
-    //             success: (res) => {
-    //                 resolve(res)
-    //             },
-    //             fail: (error) => {
-    //                 reject(error)
-    //             }
-    //         })
-    //     })
-
-    //     promise.then((res) => {
-    //         console.log(res)
-    //     }, (error) => {
-    //     })
-    // },
-
     onLoad: function (options) {
-        bookModel.getHotList().then((res) => {
+        const bookId = options.bookId
+        const detail = bookModel.getDetail(bookId)
+        const comments = bookModel.getComment(bookId)
+        const likeStatus = bookModel.getLikeStatus(bookId)
+
+        detail.then(res => {
             this.setData({
-                    books: res
+                book: res
             })
-            
+        })
+
+        comments.then(res => {
+            this.setData({
+                comments: res
+            })
+        })
+
+        likeStatus.then(res => {
+            this.setData({
+                likeStatus: res.like_status,
+                likeCount: res.fav_nums,
+            })
         })
     },
 

@@ -1,6 +1,10 @@
-import {HTTP} from '../util/http.js' //相对路径
+import {
+    HTTP
+} from '../util/http.js' //相对路径
+
+
 class ClassicModel extends HTTP {
-    getLatest(sCallback){
+    getLatest(sCallback) {
         this.request({
             url: 'classic/latest',
             success: (res) => {
@@ -16,7 +20,7 @@ class ClassicModel extends HTTP {
         let key = nextOrPrevious == 'next' ?
             this._getKey(index + 1) : this._getKey(index - 1)
         let classic = wx.getStorageSync(key)
-        if(!classic) {
+        if (!classic) {
             this.request({
                 url: `classic/${index}/${nextOrPrevious}`,
                 success: (res) => {
@@ -24,10 +28,9 @@ class ClassicModel extends HTTP {
                     sCallback(res)
                 }
             })
-        } 
-        else {
+        } else {
             sCallback(classic)
-        }        
+        }
     }
 
     isFirst(index) {
@@ -50,6 +53,8 @@ class ClassicModel extends HTTP {
         let key = 'classic-' + index
         return key
     }
-} 
+}
 
-export {ClassicModel}
+export {
+    ClassicModel
+}

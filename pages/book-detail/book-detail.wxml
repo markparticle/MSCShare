@@ -1,0 +1,10 @@
+<view class="container">
+    <view class="header">
+        <image src="{{book.image}}" />
+        <text class="title" src="{{book.title}}" />
+        <text class="author" src="{{book.author}}" />
+    </view>
+    <view class="sub-container">
+        <text class="headline">短评</text>
+    </view>
+</view>

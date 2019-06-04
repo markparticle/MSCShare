@@ -4,7 +4,8 @@
         "pages/book/book",
         "pages/my/my",
         "components/classic/movie/index",
-        "components/episode/index"
+        "components/episode/index",
+        "pages/book-detail/book-detail"
     ],
     "window": {
         "navigationBarBackgroundColor": "#FFFFFF",

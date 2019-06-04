@@ -6,8 +6,8 @@ Component({
     properties: {
         index: {
             type: Number,
-            observer: function(newVal, oldVal, changePath){
-                let val = newVal < 10 ? '0' + newVal: newVal
+            observer: function (newVal, oldVal, changePath) {
+                let val = newVal < 10 ? '0' + newVal : newVal
                 this.setData({
                     _index: val
                 })
@@ -20,21 +20,22 @@ Component({
      */
     data: {
         months: [
-            '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月', ],
+            '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月',
+        ],
         year: 0,
         month: '',
         _index: '',
     },
 
-    attached: function() {
+    attached: function () {
         // console.log(this.properties)
         // console.log(this.data)
         let data = new Date()
-        let year = data.getFullYear() 
+        let year = data.getFullYear()
         let month = data.getMonth()
 
         this.setData({
-            year: year,
+            year,
             month: this.data.months[month]
         })
     },

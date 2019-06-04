@@ -21,7 +21,7 @@ Component({
     data: {
         playing: false,
         pauseSrc: 'images/player@pause.png',
-        playSrc: 'images/player@play.png'
+        playSrc: 'images/player@play.png',
     },
 
     /**
@@ -84,6 +84,4 @@ Component({
         this._recoverPlaying()
         this._monitorSwitch()
     },
-
-
 })
