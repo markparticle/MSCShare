@@ -16,7 +16,7 @@
     margin-right: 14rpx;
 }
 
-.line{
+.line {
     height: 44rpx;
     margin-right: 14rpx;
     border-left: 1px solid black;
@@ -28,14 +28,14 @@
     align-items: baseline;
 }
 
-.date-container{
+.date-container {
     height: 50rpx;
     display: flex;
     flex-direction: column;
     margin-top: 8rpx;
 }
 
-.month{
+.month {
     font-size: 24rpx;
     line-height: 24rpx;
 }

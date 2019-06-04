@@ -6,35 +6,44 @@ import {
 const tips = {
     1: '抱歉，出现了一个错误',
     1005: 'appkey无效',
-    3000: '期刊不存在'
+    3000: '期刊不存在',
 }
 
+// 纯粹callback 回调地狱 每次调用都需要带回调函数 无return
+// promise 代码风格 多个异步等待合并 对象(保存状态)
+// async await (promise语法糖) es2017 最佳方案 小程序暂不支持
+// 一次调用 多次调用API 链式调用 3个API API1 API2 API3
 class HTTP {
-    request(params) {
-        // URL, data, method
-        if (!params.method) {
-            params.method = "GET"
-        }
+    // 解构
+    request({url, data = {}, method = 'GET'}) {
+        return new Promise((resolve, reject) => {
+            this._request(url, resolve, reject, data, method)
+        })
+    }
+    _request(url, resolve, reject, data = {}, method = 'GET') {
         wx.request({
-            url: config.api_base_url + params.url,
-            method: params.method,
-            data: params.data,
+            url: config.api_base_url + url,
+            method: method,
+            data: data,
             header: {
                 'content-type': 'application/json',
                 'appkey': config.appkey
             },
             success: (res) => {
-                let code = res.statusCode.toString()
+                const code = res.statusCode.toString()
                 if (code.startsWith('2')) {
-                    params.success && params.success(res.data)
-                } else {
+                    resolve(res.data)
+                } 
+                else {
                     //服务器异常
-                    let error_code = res.data.error_code
+                    reject()
+                    const error_code = res.data.error_code
                     this._show_error(error_code)
                 }
             },
             fail: (err) => {
                 //调用失败 
+                reject
                 this._show_error(1)
             }
         })

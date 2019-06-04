@@ -1,5 +1,7 @@
 // components/classic/essay/index.js
-import {classicBeh} from "../classic-beh.js"
+import {
+    classicBeh
+} from "../classic-beh.js"
 
 
 Component({
@@ -7,8 +9,7 @@ Component({
      * 组件的属性列表
      */
     behaviors: [classicBeh],
-    properties: {
-    },
+    properties: {},
 
     /**
      * 组件的初始数据
