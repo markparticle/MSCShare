@@ -46,3 +46,38 @@
     color: #2f2f2f;
     margin-bottom: 20rpx;
 }
+
+.comment-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.comment-container v-tag {
+    margin-right: 15rpx;
+    margin-bottom: 10rpx;
+} 
+
+.num {
+    margin-left: 5px;
+    font-size: 22rpx;
+    color: #aaa;
+}
+
+.ex-tag1 {
+    background-color:  #fffbdd !important;
+}
+
+.ex-tag2 {
+    background-color:  #eefbff !important;
+}
+
+
+/* hack违反组件封装原则 */
+/* .comment-container v-tag:nth-child(1) > view{
+    background-color: #fffbdd;
+}
+.comment-container v-tag:nth-child(2) > view{
+    background-color: #eefbff;
+} */
