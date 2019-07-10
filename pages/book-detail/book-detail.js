@@ -70,29 +70,37 @@ Page({
     },
 
     onPost(event) {
-        const comment = event.detail.text
-        console.log(event.detail.text)
-        // if (comment.length > 12) {
-        //     wx.showToast({
-        //         title: '短评最多12个字',
-        //         icon: 'none'
-        //     })
-        //     return
-        // }
+        const comment = event.detail.text || event.detail.value
+
+        if(!comment) {
+            return 
+        }
+
+        if (comment.length > 12) {
+            wx.showToast({
+                title: '短评最多12个字',
+                icon: 'none'
+            })
+            return
+        }
         bookModel.postComment(this.data.book.id, comment)
             .then(res => {
                 wx.showToast({
                     title: '+1',
                     icon: 'none',
                 })
-
+                // const comments = bookModel.getComment(bookId)
+                // if comment in comments {
+                //     console
+                // }
                 this.data.comments.unshift({
-                    comment,
-                    nums: 1,
-                })
-
+                    content: comment,
+                    nums: 1, //无返回数量
+                })               
+                
                 this.setData({
-                    comments: this.data.comments
+                    comments: this.data.comments,
+                    posting: false,
                 })
             })
     },
