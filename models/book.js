@@ -33,6 +33,17 @@ class BookModel extends HTTP {
             url: `/book/${bookId}/short_comment`
         })
     }
+
+    postComment(bookId, comment) {
+        return this.request({
+            url: '/book/add/short_comment',
+            method: 'POST',
+            data: {
+                book_id: bookId,
+                content: comment,
+            }
+        })
+    }
 }
 
 export {
