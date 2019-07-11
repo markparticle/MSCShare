@@ -27,29 +27,41 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        wx.showLoading()
         const bookId = options.bookId
         const detail = bookModel.getDetail(bookId)
         const comments = bookModel.getComment(bookId)
         const likeStatus = bookModel.getLikeStatus(bookId)
+        wx.showLoading()
 
-        detail.then(res => {
-            this.setData({
-                book: res
+        //.race 竞争
+        Promise.all([detail, comments, likeStatus])
+            .then(res => {
+                this.setData({
+                    book: res[0],
+                    comments: res[1].comments,
+                    likeStatus: res[2].like_status,
+                    likeCount: res[2].fav_nums,
+                })
+                wx.hideLoading()
             })
-        })
 
-        comments.then(res => {
-            this.setData({
-                comments: res.comments
-            })
-        })
+        // detail.then(res => {
+        //     book: res,
+        // })
 
-        likeStatus.then(res => {
-            this.setData({
-                likeStatus: res.like_status,
-                likeCount: res.fav_nums,
-            })
-        })
+        // comments.then(res => {
+        //     this.setData({
+        //         comments: res.comments
+        //     })
+        // })
+
+        // likeStatus.then(res => {
+        //     this.setData({
+        //         likeStatus: res.like_status,
+        //         likeCount: res.fav_nums,
+        //     })
+        // })
     },
 
     onLike(event) {
@@ -72,8 +84,8 @@ Page({
     onPost(event) {
         const comment = event.detail.text || event.detail.value
 
-        if(!comment) {
-            return 
+        if (!comment) {
+            return
         }
 
         if (comment.length > 12) {
@@ -96,8 +108,8 @@ Page({
                 this.data.comments.unshift({
                     content: comment,
                     nums: 1, //无返回数量
-                })               
-                
+                })
+
                 this.setData({
                     comments: this.data.comments,
                     posting: false,
