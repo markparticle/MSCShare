@@ -7,18 +7,25 @@ import {
     BookModel
 } from '../../models/book.js'
 
+import {
+    paginationBev
+} from '../behaviors/pagination.js'
+
+
 
 const keywordModel = new KeywordModel()
 const bookModel = new BookModel()
 
 Component({
+
+    behaviors: [paginationBev],
     /**
      * 组件的属性列表
      */
     properties: {
         more: {
             type: String,
-            observer: '_load_more'
+            observer: 'loadMore'
         }
     },
 
@@ -28,10 +35,10 @@ Component({
     data: {
         historyWords: [],
         hotWords: [],
-        dataArray: [],
         searching: false,
         q: '',
         loading: false,
+        loadingCenter: false,
     },
 
     /**
@@ -52,49 +59,78 @@ Component({
      * 组件的方法列表
      */
     methods: {
-        _load_more() {
-            if(!this.data.q) {
+        loadMore() {
+            if (!this.data.q) {
                 return
             }
 
-            if(this.data.loding) {
+            if (this.isLocked()) {
                 return
             }
-            
-            const length = this.data.dataArray.length
-            this.data.loading = true
-            bookModel.search(length, this.data.q). then(res => {
-                const tempArray = this.data.dataArray.concat(res.books)
-                this.setData({
-                        dataArray: tempArray,
+            // const length = this.data.dataArray.length
+            if (this.hasMore()) {
+                this.locked()
+                bookModel.search(this.getCurrentStart(), this.data.q).then(res => {
+                    this.setMoreData(res.books)
+                    this.unLocked()
+                }, () => {
+                    this.unLocked()
                 })
-                this.data.loading = false
-            })
+            }
         },
 
         onCancel(event) {
             this.triggerEvent('cancel', {}, {})
+            this.initPagination()
         },
 
         onDelete(event) {
-            this.setData({
-                searching: false
-            })
+            this._closeResult()
+            this.initPagination()
         },
 
         onConfirm(event) {
+            this._showResult()
+            this._showLoadingCenter()
+            this.initPagination()
+            const q = event.detail.value || event.detail.text
+            this.setData({
+                q
+            })
+            bookModel.search(0, q)
+                .then(res => {
+                    this.setMoreData(res.books)
+                    this.setTotal(res.total)
+                    keywordModel.addToHistory(q)
+                    this._hideLoadingCenter()
+                })
+        },
+
+        _showResult() {
             this.setData({
                 searching: true
             })
-            const q = event.detail.value || event.detail.text
-            bookModel.search(0, q)
-                .then(res => {
-                    this.setData({
-                        dataArray: res.books,
-                        q
-                    })
-                    keywordModel.addToHistory(q)
-                })
+        },
+
+        _closeResult() {
+            this.setData({
+                searching: false,
+                q: '',
+            })
+        },
+
+        _showLoadingCenter() {
+            this.setData({
+                loadingCenter: true
+            })
+        },
+
+        _hideLoadingCenter() {
+            this.setData({
+                loadingCenter: false
+            })
         }
+
+
     }
 })
