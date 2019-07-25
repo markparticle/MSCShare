@@ -5,16 +5,43 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        authorized: false,
+        userInfo: null,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.userAuthorized()
     },
 
+    userAuthorized() {
+        wx.getSetting({
+            success: data => {
+                if (data.authSetting['scope.userInfo']) {
+                    wx.getUserInfo({
+                        success: data => {
+                            this.setData({
+                                userInfo: true,
+                                userInfo: data.userInfo
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    },
+
+    onGetUserInfo(event) {
+        const userInfo = event.detail.userInfo
+        if (userInfo) {
+            this.setData({
+                authorized: true,
+                userInfo,
+            })
+        }
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -62,5 +89,7 @@ Page({
      */
     onShareAppMessage: function () {
 
-    }
+    },
+
+
 })
