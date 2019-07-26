@@ -3,11 +3,15 @@
 <view class="container">
     <view class="header">
         <v-episode class="episode" index="{{classicData.index}}" content="{{classicData.content}}" />
-        <v-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" />
+        <view class="like-container">
+            <v-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" />
+            <v-button open-type="share" class="share-btn">
+                <image slot="img" class="share" src="/images/icon/share.png" />
+            </v-button>
+        </view>
     </view>
     <v-movie wx:if="{{classicData.type == 100}}" img="{{classicData.image}}" content="{{classicData.content}}" />
-    <v-music wx:if="{{classicData.type == 200}}" img="{{classicData.image}}" content="{{classicData.content}}" 
-        musicSrc="{{classicData.url}}" musicTitle="{{classicData.title}}" />
+    <v-music wx:if="{{classicData.type == 200}}" img="{{classicData.image}}" content="{{classicData.content}}" musicSrc="{{classicData.url}}" musicTitle="{{classicData.title}}" />
     <v-essay wx:if="{{classicData.type == 300}}" img="{{classicData.image}}" content="{{classicData.content}}" />
     <v-navi bind:left="onNext" bind:right="onPrevious" class="navi" title="{{classicData.title}}" first="{{first}}" latest="{{latest}}" />
 </view>

@@ -8,7 +8,7 @@ import {
 } from '../../util/common.js';
 
 
-let bookModel = new BookModel()
+const bookModel = new BookModel()
 
 Page({
 
