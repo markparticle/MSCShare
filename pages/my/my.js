@@ -1,4 +1,16 @@
 // pages/my/my.js
+import {
+    BookModel
+} from '../../models/book.js'
+
+import {
+    ClassicModel
+} from '../../models/classic.js';
+
+
+const classicModel = new ClassicModel
+const bookModel = new BookModel
+
 Page({
 
     /**
@@ -7,6 +19,8 @@ Page({
     data: {
         authorized: false,
         userInfo: null,
+        bookCount: 0,
+        classics: null,
     },
 
     /**
@@ -14,6 +28,17 @@ Page({
      */
     onLoad: function (options) {
         this.userAuthorized()
+        this.getMyBookCount()
+        this.getMyFavor()
+    },
+
+    getMyBookCount() {
+        bookModel.getMyBookCount()
+            .then(res => {
+                this.setData({
+                    bookCount: res.count
+                })
+            })
     },
 
     userAuthorized() {
@@ -41,6 +66,26 @@ Page({
                 userInfo,
             })
         }
+    },
+
+    onJumpToAbout(event) {
+        wx.navigateTo({
+            url: '/pages/about/about'
+        })
+    },
+
+    onStudy(event) {
+        wx.navigateTo({
+            url: '/pages/course/course'
+        })
+    },
+
+    getMyFavor() {
+        classicModel.getMyFavor(res => {
+            this.setData({
+                classics: res
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
